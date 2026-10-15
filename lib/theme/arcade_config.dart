@@ -83,6 +83,8 @@ const arcadeConfig = ArcadeConfig(
   fallDown: false,
   tip1Id: 'zoomzapzonepretzel',
   tip2Id: 'zoomzapzoneburger',
-  tip1Label: '💛 Buy me a pretzel',
-  tip2Label: '💛 Buy me a burger',
+  tip1Label: '💛 Buy me a pretzel for Zoom Zap Zone',
+
+  tip2Label: '💛 Buy me a burger for Zoom Zap Zone',
+
 );

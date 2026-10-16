@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/arcade_config.dart';
 import '../services/settings_service.dart';
+import '../transfer/transfer_ui.dart';
 
 class SettingsScreen extends StatefulWidget {
   final ArcadeConfig config;
@@ -40,6 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       backgroundColor: c.darkColor,
       appBar: AppBar(title: const Text('Settings'), backgroundColor: c.primaryColor, foregroundColor: Colors.white),
       body: ListView(padding: const EdgeInsets.all(16), children: [
+              TransferSaveTile(gameSlug: 'zoomzapzone'),
         const Text('PLAYER NAME', style: TextStyle(color: Colors.white54, fontSize: 12)),
         const SizedBox(height: 6),
         TextField(controller: _nameCtrl, style: const TextStyle(color: Colors.white),

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:share_plus/share_plus.dart';
@@ -16,6 +17,14 @@ class _SupportScreenState extends State<SupportScreen> {
   String? _thanks;
 
   Future<void> _tip(String productId, String label) async {
+    // No store on web — tips are mobile-only.
+    if (kIsWeb) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Tips are available in the mobile app!')));
+      }
+      return;
+    }
     final available = await InAppPurchase.instance.isAvailable();
     if (!available) {
       if (mounted) {
@@ -71,7 +80,10 @@ class _SupportScreenState extends State<SupportScreen> {
           onPressed: () => Share.share('Check out ${c.displayName}! ${c.tagline}'),
         ),
         TextButton(
-          onPressed: () => InAppReview.instance.openStoreListing(),
+          onPressed: () {
+              if (kIsWeb) return; // no store listing on web
+              InAppReview.instance.openStoreListing();
+            },
           child: const Text('Rate us ⭐', style: TextStyle(color: Colors.white70)),
         ),
         const SizedBox(height: 12),
